@@ -1,4 +1,4 @@
-import matplotlib
+
 
 print("Forza ANGRI!")
-
+print("AMALA")
