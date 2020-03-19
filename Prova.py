@@ -1,4 +1,4 @@
 import matplotlib
 
-print("SALERNITANA MERDA")
+print("Forza ANGRI!")
 
