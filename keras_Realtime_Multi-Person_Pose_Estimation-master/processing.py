@@ -34,8 +34,8 @@ FIGHTED_PARTS = ['nose', 'neck','right_shoulder', 'right_elbow', 'right_wrist',
     left_ankle con right/left_ankle, right/left_hip, right/left_knee
     
     2 +
-    9 +    
-    9 +    facendo la media tra right_shoulder e left_shoulder
+    11 +    
+    11 +    facendo la media tra right_shoulder e left_shoulder
     3 +
     3 +
     5 +
@@ -321,9 +321,13 @@ def draw(input_image, all_peaks, subset, candidate, resize_fac=1):
                 dict['background2'] = (a,b)
             cv2.circle(canvas, (a, b), 2, util.colors[i], thickness=-1)
 
-    list = CalcoloDistanza.selectPlayer1(dict)
+    list1 = CalcoloDistanza.selectPlayer1(dict)
+    list2 = CalcoloDistanza.selectPlayer2(dict)
 
-    print(list)
+    print(list1)
+    print(list2)
+    print(len(list1))
+    print(len(list2))
 
     stickwidth = 4
 
