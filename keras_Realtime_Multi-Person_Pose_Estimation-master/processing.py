@@ -4,6 +4,8 @@ import numpy as np
 from scipy.ndimage.filters import gaussian_filter
 import cv2
 
+import CalcoloDistanza
+
 import util
 
 COCO_BODY_PARTS = ['nose', 'neck',
@@ -21,7 +23,27 @@ FIGHTED_PARTS = ['nose', 'neck','right_shoulder', 'right_elbow', 'right_wrist',
                    'right_hip', 'right_knee', 'right_ankle',
                    'left_hip', 'left_knee', 'left_ankle']
 
-#14x9x2 = 252 features
+''' nose/nose , nose/right_shoulder , nose/left_shoulder
+    right_wrist senza right/left_knee right/left_ankle  
+    left_wrist senza right/left_knee right/left_ankle  
+    right_elbow con nose, right/left_hip
+    left_elbow con nose, right/left_hip
+    right_knee con nose, right_hip, left_hip, right/left_knee
+    left_knee con nose, right_hip, left_hip, right/left_knee
+    right_ankle con right/left_ankle, right/left_hip, right/left_knee
+    left_ankle con right/left_ankle, right/left_hip, right/left_knee
+    
+    2 +
+    9 +    
+    9 +    facendo la media tra right_shoulder e left_shoulder
+    3 +
+    3 +
+    5 +
+    5 +
+    6 +
+    6
+'''
+
 
 def extract_parts(input_image, params, model, model_params):
     multiplier = [x * model_params['boxsize'] / input_image.shape[0] for x in params['scale_search']]
@@ -299,7 +321,9 @@ def draw(input_image, all_peaks, subset, candidate, resize_fac=1):
                 dict['background2'] = (a,b)
             cv2.circle(canvas, (a, b), 2, util.colors[i], thickness=-1)
 
-    print(dict)
+    list = CalcoloDistanza.selectPlayer1(dict)
+
+    print(list)
 
     stickwidth = 4
 
