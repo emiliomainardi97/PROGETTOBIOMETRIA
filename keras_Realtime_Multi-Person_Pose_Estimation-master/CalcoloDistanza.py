@@ -268,7 +268,7 @@ def selectPlayer2(dict):
     nose2 = dict['nose2']
     nose1 = dict['nose1']
 
-    dist.append(control(nose2, nose1))
+   # dist.append(control(nose2, nose1))
 
     right_shoulder1 = dict['right_shoulder1']
     left_shoulder1 = dict['left_shoulder1']
@@ -332,7 +332,7 @@ def selectPlayer2(dict):
     dist.append(control(right_knee2, left_hip1))
 
     right_knee1 = dict['right_knee1']
-    dist.append(control(right_knee2, right_knee1))
+   # dist.append(control(right_knee2, right_knee1))
 
     left_knee1 = dict['left_knee1']
     dist.append(control(right_knee2, left_knee1))
@@ -356,7 +356,7 @@ def selectPlayer2(dict):
 
     dist.append(control(left_knee2, right_knee1))
 
-    dist.append(control(left_knee2, left_knee1))
+   # dist.append(control(left_knee2, left_knee1))
 
     '''
     CALCOLO DISTANZE CAVIGLIA DESTRA CON:
@@ -373,9 +373,9 @@ def selectPlayer2(dict):
     right_ankle1 = dict['right_ankle1']
     left_ankle1 = dict['left_ankle1']
 
-    dist.append(control(right_ankle2, left_ankle1))
+    #dist.append(control(right_ankle2, left_ankle1))
 
-    dist.append(control(right_ankle2, right_ankle1))
+    #dist.append(control(right_ankle2, right_ankle1))
 
     dist.append(control(right_ankle2, right_hip1))
 
@@ -397,9 +397,9 @@ def selectPlayer2(dict):
     '''
     left_ankle2 = dict['left_ankle2']
 
-    dist.append(control(left_ankle2, left_ankle1))
+    #dist.append(control(left_ankle2, left_ankle1))
 
-    dist.append(control(left_ankle2, right_ankle1))
+    #dist.append(control(left_ankle2, right_ankle1))
 
     dist.append(control(left_ankle2, right_hip1))
 
@@ -442,7 +442,7 @@ def selectPlayer2(dict):
     right_wrist1 = dict['right_wrist1']
     left_wrist1 = dict['left_wrist1']
 
-    dist.append(control(right_wrist2, right_wrist1))
+   # dist.append(control(right_wrist2, right_wrist1))
 
     dist.append(control(right_wrist2, left_wrist1))
 
@@ -487,7 +487,7 @@ def selectPlayer2(dict):
 
     dist.append(control(left_wrist2, right_wrist1))
 
-    dist.append(control(left_wrist2, left_wrist1))
+   # dist.append(control(left_wrist2, left_wrist1))
 
     dist.append(control(left_wrist2, right_elbow1))
 
