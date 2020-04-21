@@ -1,12 +1,20 @@
 import cv2,os
 
-vidcap = cv2.VideoCapture('videos/prova.mp4')
-os.chdir('C:\Frame_Estratti')
-success,image = vidcap.read()
+path = 'C:\ideos\V_'
+estensione= '.mp4'
+
+os.chdir('C:\Frame Estratti')
 count = 0
-success = True
-while success:
-     cv2.imwrite("frame%d.jpg" % count, image)     # save frame as JPEG file
-     success,image = vidcap.read()
-     print ('Read a new frame: ', success)
-     count += 1
+
+for i in range(640):
+
+    vidcap = cv2.VideoCapture(path + str(i) + estensione)
+    success,image = vidcap.read()
+
+    while success:
+
+        image = cv2.resize(image, (1080,1080), interpolation=cv2.INTER_CUBIC)
+        cv2.imwrite("frame%d.jpg" % count, image)     # save frame as JPEG file
+        success,image = vidcap.read()
+        print ('Read a new frame: ', success)
+        count += 1
