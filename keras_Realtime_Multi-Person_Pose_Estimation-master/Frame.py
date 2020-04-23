@@ -1,12 +1,12 @@
 import cv2,os
 
-path = 'C:\ideos\V_'
+path = 'C:\FightDataset\\NonViolence\\NV_'
 estensione= '.mp4'
 
-os.chdir('C:\Frame Estratti')
+os.chdir('C:\Frame_Estratti\\NonViolence')
 count = 0
 
-for i in range(640):
+for i in range(667,1001):
 
     vidcap = cv2.VideoCapture(path + str(i) + estensione)
     success,image = vidcap.read()
