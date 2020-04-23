@@ -324,11 +324,6 @@ def draw(input_image, all_peaks, subset, candidate, resize_fac=1):
     list1 = CalcoloDistanza.selectPlayer1(dict)
     list2 = CalcoloDistanza.selectPlayer2(dict)
 
-    print(list1)
-    print(list2)
-    print(len(list1))
-    print(len(list2))
-
     stickwidth = 4
 
     for i in range(17):
@@ -348,4 +343,4 @@ def draw(input_image, all_peaks, subset, candidate, resize_fac=1):
             cv2.fillConvexPoly(cur_canvas, polygon, util.colors[i])
             canvas = cv2.addWeighted(canvas, 0.4, cur_canvas, 0.6, 0)
 
-    return canvas
+    return canvas,dict,list1,list2

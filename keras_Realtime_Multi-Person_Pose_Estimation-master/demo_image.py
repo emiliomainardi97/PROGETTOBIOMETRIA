@@ -1,8 +1,7 @@
 import argparse
 import time
-
 import cv2
-
+import Concatena
 from processing import extract_parts, draw
 
 from config_reader import config_reader
@@ -35,8 +34,10 @@ if __name__ == '__main__':
     input_image = cv2.imread('coppia.jpg')  # B,G,R order
     
     body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
-    canvas = draw(input_image, all_peaks, subset, candidate)
-    
+    canvas,dict,list1,list2 = draw(input_image, all_peaks, subset, candidate)
+    #ISTANZIARE IL DATASET-COMPLETO & DISTANZE
+    #Concatena.salva_csv(dict)
+    #Concatena.salva_csv_dist(list1,list2)
     toc = time.time()
     print('processing time is %.5f' % (toc - tic))
 
