@@ -1,6 +1,6 @@
 import argparse
 import time
-import cv2
+import cv2,os
 import Concatena
 from processing import extract_parts, draw
 
@@ -31,18 +31,19 @@ if __name__ == '__main__':
     # load config
     params, model_params = config_reader()
 
-    path = 'C:\Frame_Estratti\Violence\\' + 'frame233.jpg'
+    list = os.listdir('C:\Frame_Estratti\Violence')
 
-    input_image = cv2.imread(path)  # B,G,R order
+    for i in range(0,3):
+        path = 'C:\Frame_Estratti\Violence\\' + list[i]
 
-    body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
-    canvas,dict,list1,list2 = draw(input_image, all_peaks, subset, candidate)
-    #ISTANZIARE IL DATASET-COMPLETO & DISTANZE
-    #Concatena.salva_csv(dict)
-    Concatena.salva_csv_dist(list1,list2,'fight')
-    toc = time.time()
-    print('processing time is %.5f' % (toc - tic))
+        input_image = cv2.imread(path)  # B,G,R order
 
-    cv2.imwrite(output, canvas)
+        body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
+        canvas, dict, list1, list2 = draw(input_image, all_peaks, subset, candidate)
+        # ISTANZIARE IL DATASET-COMPLETO & DISTANZE
+        Concatena.salva_csv(dict,'fight')
+        Concatena.salva_csv_dist(list1,list2,'fight')
+        print(list[i])
+        toc = time.time()
+        print('processing time is %.5f' % (toc - tic))
 
-    cv2.destroyAllWindows()
