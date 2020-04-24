@@ -6,7 +6,7 @@ import csv
 import os
 
 
-def salva_csv(dict):
+def salva_csv(dict,value):
     file_exists = os.path.isfile('dataset.csv')
     with open('dataset.csv', mode='a', newline='') as csv_file:
         fieldnames = ['nose1x', 'neck1x',
@@ -32,7 +32,7 @@ def salva_csv(dict):
                        'left_shoulder2y', 'left_elbow2y', 'left_wrist2y',
                        'right_hip2y', 'right_knee2y', 'right_ankle2y',
                        'left_hip2y', 'left_knee2y', 'left_ankle2y',
-                       'right_eye2y', 'left_eye2y', 'right_ear2y', 'left_ear2y', 'background2y']
+                       'right_eye2y', 'left_eye2y', 'right_ear2y', 'left_ear2y', 'background2y','label']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         if not file_exists:
             writer.writeheader()
@@ -64,9 +64,9 @@ def salva_csv(dict):
                        'right_hip2y':dict['right_hip2'][1], 'right_knee2y':dict['right_knee2'][1], 'right_ankle2y':dict['right_ankle2'][1],
                        'left_hip2y':dict['left_hip2'][1], 'left_knee2y':dict['left_knee2'][1], 'left_ankle2y':dict['left_ankle2'][1],
                        'right_eye2y':dict['right_eye2'][1], 'left_eye2y':dict['left_eye2'][1], 'right_ear2y':dict['right_ear2'][1],
-                       'left_ear2y':dict['left_ear2'][1], 'background2y':dict['background2'][1]})
+                       'left_ear2y':dict['left_ear2'][1], 'background2y':dict['background2'][1], 'label':value})
 
-def salva_csv_dist(list1,list2):
+def salva_csv_dist(list1,list2, value):
     file_exists = os.path.isfile('dataset_dist.csv')
     with open('dataset_dist.csv', mode='a', newline='') as csv_file:
 
@@ -186,5 +186,6 @@ def salva_csv_dist(list1,list2):
             fieldnames[89]: list2[37],
             fieldnames[90]: list2[38],
             fieldnames[91]: list2[39],
-            fieldnames[92]: list2[40]
+            fieldnames[92]: list2[40],
+            fieldnames[93]: value
         })

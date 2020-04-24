@@ -23,7 +23,8 @@ FIGHTED_PARTS = ['nose', 'neck','right_shoulder', 'right_elbow', 'right_wrist',
                    'right_hip', 'right_knee', 'right_ankle',
                    'left_hip', 'left_knee', 'left_ankle']
 
-''' nose/nose , nose/right_shoulder , nose/left_shoulder
+''' 
+    nose/nose , nose/right_shoulder , nose/left_shoulder
     right_wrist senza right/left_knee right/left_ankle  
     left_wrist senza right/left_knee right/left_ankle  
     right_elbow con nose, right/left_hip
@@ -32,16 +33,6 @@ FIGHTED_PARTS = ['nose', 'neck','right_shoulder', 'right_elbow', 'right_wrist',
     left_knee con nose, right_hip, left_hip, right/left_knee
     right_ankle con right/left_ankle, right/left_hip, right/left_knee
     left_ankle con right/left_ankle, right/left_hip, right/left_knee
-    
-    2 +
-    11 +    
-    11 +    facendo la media tra right_shoulder e left_shoulder
-    3 +
-    3 +
-    5 +
-    5 +
-    6 +
-    6
 '''
 
 
