@@ -1,3 +1,9 @@
+'''
+
+ESTRAZIONE DEI FRAME DAI VIDEO
+
+'''
+
 import cv2,os
 
 path = 'C:\FightDataset\\NonViolence\\NV_'

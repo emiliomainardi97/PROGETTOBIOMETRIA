@@ -39,7 +39,7 @@ if __name__ == '__main__':
     canvas,dict,list1,list2 = draw(input_image, all_peaks, subset, candidate)
     #ISTANZIARE IL DATASET-COMPLETO & DISTANZE
     #Concatena.salva_csv(dict)
-    Concatena.salva_csv_dist(list1,list2,'fight')
+    #Concatena.salva_csv_dist(list1,list2,'fight')
     toc = time.time()
     print('processing time is %.5f' % (toc - tic))
 

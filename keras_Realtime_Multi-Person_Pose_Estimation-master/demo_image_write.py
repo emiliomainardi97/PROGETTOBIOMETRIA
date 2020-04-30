@@ -31,19 +31,20 @@ if __name__ == '__main__':
     # load config
     params, model_params = config_reader()
 
-    list = os.listdir('C:\Frame_Estratti\Violence')
+    list = os.listdir('C:\Frame_Estratti\\NonViolence')
 
-    for i in range(0,3):
-        path = 'C:\Frame_Estratti\Violence\\' + list[i]
+    for i in range(2500,3500):
+        path = 'C:\Frame_Estratti\\NonViolence\\' + list[i]
 
         input_image = cv2.imread(path)  # B,G,R order
 
         body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
         canvas, dict, list1, list2 = draw(input_image, all_peaks, subset, candidate)
         # ISTANZIARE IL DATASET-COMPLETO & DISTANZE
-        Concatena.salva_csv(dict,'fight')
-        Concatena.salva_csv_dist(list1,list2,'fight')
+        Concatena.salva_csv(dict,'notfight')
+        Concatena.salva_csv_dist(list1,list2,'notfight')
         print(list[i])
         toc = time.time()
         print('processing time is %.5f' % (toc - tic))
+        print(i)
 
