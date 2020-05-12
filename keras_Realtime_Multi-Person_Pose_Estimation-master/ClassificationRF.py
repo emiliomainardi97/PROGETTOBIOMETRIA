@@ -30,13 +30,13 @@ if __name__ == '__main__':
     # load config
     params, model_params = config_reader()
 
+    #immagini da classificare
     input_image = cv2.imread('images.jpg')  # B,G,R order
 
     body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
     canvas, dict, lis1, lis2 = draw(input_image, all_peaks, subset, candidate)
 
     cv2.imwrite(output, canvas)
-
 
     Concatena.salva_csv_dist(lis1, lis2, 'none')
 

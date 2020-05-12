@@ -31,16 +31,15 @@ if __name__ == '__main__':
     # load config
     params, model_params = config_reader()
 
-    path = 'C:\Frame_Estratti\Violence\\' + 'frame5095.jpg'
+    path_image = "coppia.jpg"
 
-    input_image = cv2.imread(path)  # B,G,R order
+    input_image = cv2.imread(path_image)  # B,G,R order
 
     body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
     canvas,dict,list1,list2 = draw(input_image, all_peaks, subset, candidate)
-    #ISTANZIARE IL DATASET-COMPLETO & DISTANZE
-    #Concatena.salva_csv(dict)
-    #Concatena.salva_csv_dist(list1,list2,'fight')
+
     toc = time.time()
+
     print('processing time is %.5f' % (toc - tic))
 
     cv2.imwrite(output, canvas)

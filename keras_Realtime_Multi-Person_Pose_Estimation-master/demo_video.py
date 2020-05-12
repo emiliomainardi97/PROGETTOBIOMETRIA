@@ -5,6 +5,16 @@ import cv2
 import time
 from config_reader import config_reader
 
+import numpy as np
+
+from keras.engine.saving import model_from_json
+
+import pandas, DeterminaSogliaMedia
+
+from sklearn import preprocessing
+
+import Concatena
+
 from processing import extract_parts, draw
 
 from model.cmu_model import get_testing_model
@@ -34,7 +44,7 @@ if __name__ == '__main__':
     print('start processing...')
 
     # Video input
-    video_path = 'videos/prova.mp4'
+    video_path = 'videos/prova1.mp4'
     video_file = video_path
 
     # Output location
@@ -70,6 +80,19 @@ if __name__ == '__main__':
 
     params['scale_search'] = scale_search
 
+    json_file = open('model4.json', 'r')
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+
+    loaded_model.load_weights("model4.h5")
+    print("Loaded model from disk")
+
+    loaded_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+    fight = 0
+    notfight = 0
+
     i = 0  # default is 0
     while(cam.isOpened()) and ret_val is True and i < ending_frame:
         if i % frame_rate_ratio == 0:
@@ -80,7 +103,7 @@ if __name__ == '__main__':
 
             # generate image with body parts
             body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
-            canvas = draw(orig_image, all_peaks, subset, candidate)
+            canvas,dict,lis1,lis2 = draw(orig_image, all_peaks, subset, candidate)
 
             print('Processing frame: ', i)
             toc = time.time()
@@ -88,6 +111,42 @@ if __name__ == '__main__':
 
             out.write(canvas)
 
+            temp = np.concatenate((lis1, lis2), axis=0)
+
+            print(DeterminaSogliaMedia.control(temp))
+
+            Concatena.salva_csv_dist(lis1, lis2, 'none')
+
+            dataframe = pandas.read_csv("dataset_dist.csv")
+
+            dataset = dataframe.values
+
+            riga = dataframe.shape[0]
+
+            X = dataset[:, 0:93]
+
+            toc = time.time()
+            print('processing time is %.5f' % (toc - tic))
+
+            predictions = loaded_model.predict_classes(X)
+
+            last = predictions[riga - 1]
+
+            lb = preprocessing.LabelBinarizer()
+            lb.fit(["notfight", "fight"])
+
+            print(lb.inverse_transform(last))
+
+            if (last == 0):
+                fight = fight + 1
+            else:
+                notfight = notfight + 1
+
         ret_val, orig_image = cam.read()
 
         i += 1
+
+    if fight > notfight:
+        print("FIGHT VIDEO")
+    else:
+        print("NOTFIGHT VIDEO")

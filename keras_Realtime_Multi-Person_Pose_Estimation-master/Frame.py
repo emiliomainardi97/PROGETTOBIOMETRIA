@@ -12,7 +12,10 @@ estensione= '.mp4'
 os.chdir('C:\Frame_Estratti\\NonViolence')
 count = 0
 
-for i in range(667,1001):
+start = 0
+end = 0
+
+for i in range(start,end):
 
     vidcap = cv2.VideoCapture(path + str(i) + estensione)
     success,image = vidcap.read()

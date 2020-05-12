@@ -1,5 +1,5 @@
 '''
-INIZIALIZZAZIONE FEATURES COMPLETE
+    INIZIALIZZAZIONE FEATURES COMPLETE
 
 '''
 
@@ -21,7 +21,7 @@ def inizializzazione():
 
 '''
 
-ASSEGNAMENTO VALORI AL DICT
+    ASSEGNAMENTO VALORI AL DICT
 
 '''
 
@@ -101,4 +101,84 @@ def assegnaValori(dict,i,j,a,b):
     if (i == 18 and j == 0):
         dict['background1'] = (a, b)
     if (i == 18 and j == 1):
+        dict['background2'] = (a, b)
+
+def assegnaValoriPlayer1(dict,i,a,b):
+    if (i == 0):
+        dict['nose1'] = (a, b)
+    if (i == 1):
+        dict['neck1'] = (a, b)
+    if (i == 2):
+        dict['right_shoulder1'] = (a, b)
+    if (i == 3):
+        dict['right_elbow1'] = (a, b)
+    if (i == 4):
+        dict['right_wrist1'] = (a, b)
+    if (i == 5):
+        dict['left_shoulder1'] = (a, b)
+    if (i == 6):
+        dict['left_elbow1'] = (a, b)
+    if (i == 7):
+        dict['left_wrist1'] = (a, b)
+    if (i == 8):
+        dict['right_hip1'] = (a, b)
+    if (i == 9):
+        dict['right_knee1'] = (a, b)
+    if (i == 10):
+        dict['right_ankle1'] = (a, b)
+    if (i == 11):
+        dict['left_hip1'] = (a, b)
+    if (i == 12):
+        dict['left_knee1'] = (a, b)
+    if (i == 13):
+        dict['left_ankle1'] = (a, b)
+    if (i == 14):
+        dict['right_eye1'] = (a, b)
+    if (i == 15):
+        dict['left_eye1'] = (a, b)
+    if (i == 16):
+        dict['right_ear1'] = (a, b)
+    if (i == 17):
+        dict['left_ear1'] = (a, b)
+    if (i == 18):
+        dict['background1'] = (a, b)
+
+def assegnaValoriPlayer2(dict,i,a,b):
+    if (i == 0):
+        dict['nose2'] = (a, b)
+    if (i == 1):
+        dict['neck2'] = (a, b)
+    if (i == 2):
+        dict['right_shoulder2'] = (a, b)
+    if (i == 3):
+        dict['right_elbow2'] = (a, b)
+    if (i == 4):
+        dict['right_wrist2'] = (a, b)
+    if (i == 5):
+        dict['left_shoulder2'] = (a, b)
+    if (i == 6):
+        dict['left_elbow2'] = (a, b)
+    if (i == 7):
+        dict['left_wrist2'] = (a, b)
+    if (i == 8):
+        dict['right_hip2'] = (a, b)
+    if (i == 9):
+        dict['right_knee2'] = (a, b)
+    if (i == 10):
+        dict['right_ankle2'] = (a, b)
+    if (i == 11):
+        dict['left_hip2'] = (a, b)
+    if (i == 12):
+        dict['left_knee2'] = (a, b)
+    if (i == 13):
+        dict['left_ankle2'] = (a, b)
+    if (i == 14):
+        dict['right_eye2'] = (a, b)
+    if (i == 15):
+        dict['left_eye2'] = (a, b)
+    if (i == 16):
+        dict['right_ear2'] = (a, b)
+    if (i == 17):
+        dict['left_ear2'] = (a, b)
+    if (i == 18):
         dict['background2'] = (a, b)

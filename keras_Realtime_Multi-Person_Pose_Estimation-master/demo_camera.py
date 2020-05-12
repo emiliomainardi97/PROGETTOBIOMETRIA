@@ -1,9 +1,13 @@
 import os
 import sys
 import argparse
-import cv2
-import time
+import cv2,util
+import time,pandas
 from config_reader import config_reader
+
+import Concatena
+
+from keras.engine.saving import model_from_json
 
 from processing import extract_parts, draw
 
@@ -86,6 +90,17 @@ if __name__ == '__main__':
     i = 0  # default is 0
     resize_fac = 8
     # while(cam.isOpened()) and ret_val is True:
+
+    json_file = open('model2.json', 'r')
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+
+    loaded_model.load_weights("model2.h5")
+    print("Loaded model from disk")
+
+    loaded_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
     while True:
 
         cv2.waitKey(10)
@@ -106,16 +121,42 @@ if __name__ == '__main__':
 
         # generate image with body parts
         body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
-        canvas,dict,list1,list2 = draw(cropped, all_peaks, subset, candidate, resize_fac=resize_fac)
+        canvas,dict,lis1,lis2 = draw(cropped, all_peaks, subset, candidate, resize_fac=resize_fac)
 
         print('Processing frame: ', i)
         toc = time.time()
         print('processing time is %.5f' % (toc - tic))
 
+        Concatena.salva_csv_dist(lis1, lis2, 'none')
+
+        dataframe = pandas.read_csv("dataset_dist.csv")
+
+        dataset = dataframe.values
+
+        riga = dataframe.shape[0]
+
+        X = dataset[:, 0:93]
+
+        toc = time.time()
+        print('processing time is %.5f' % (toc - tic))
+
+        predictions = loaded_model.predict_classes(X)
+
+        #classificazione frame corrente
+        last = predictions[riga - 1]
+
+        if (last == 0):
+            prediction = "fight"
+        else:
+            prediction = "notfight"
+
         if out is not None:
             out.write(canvas)
 
-        #canvas = cv2.resize(canvas, (0, 0), fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
+        canvas = cv2.resize(canvas, (0, 0), fx=4, fy=2, interpolation=cv2.INTER_CUBIC)
+
+        #testo col risultato della classificazione
+        cv2.putText(canvas, prediction, (0, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
 
         cv2.imshow('frame', canvas)
 
@@ -125,3 +166,5 @@ if __name__ == '__main__':
         ret_val, orig_image = cam.read()
 
         i += 1
+
+

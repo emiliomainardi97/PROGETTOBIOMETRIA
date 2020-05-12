@@ -33,7 +33,10 @@ if __name__ == '__main__':
 
     list = os.listdir('C:\Frame_Estratti\\Violence')
 
-    for i in range(6500,8000):
+    start = 0
+    end = 0
+
+    for i in range(start,end):
         path = 'C:\Frame_Estratti\\Violence\\' + list[i]
 
         input_image = cv2.imread(path)  # B,G,R order

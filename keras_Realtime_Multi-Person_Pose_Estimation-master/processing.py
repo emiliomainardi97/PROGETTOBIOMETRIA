@@ -223,6 +223,7 @@ def draw(input_image, all_peaks, subset, candidate, resize_fac=1):
 
     dict = Inizializza.inizializzazione()
 
+    #calcolo coordinate delle persone
     for i in range(18):
         for j in range(len(all_peaks[i])):
             a = all_peaks[i][j][0] * resize_fac
@@ -230,8 +231,9 @@ def draw(input_image, all_peaks, subset, candidate, resize_fac=1):
             Inizializza.assegnaValori(dict,i,j,a,b)
             cv2.circle(canvas, (a, b), 2, util.colors[i], thickness=-1)
 
-    list1 = CalcoloDistanza.selectPlayer1(dict)
-    list2 = CalcoloDistanza.selectPlayer2(dict)
+    #lista delle distanze tra le persone
+    list1, lis1 = CalcoloDistanza.selectPlayer1(dict)
+    list2, lis2 = CalcoloDistanza.selectPlayer2(dict)
 
     stickwidth = 4
 

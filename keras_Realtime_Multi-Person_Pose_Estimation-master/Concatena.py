@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import csv
 import os
 
+'''
+    SALVATAGGIO FILE CSV DATASET COMPLETO
+'''
 
 def salva_csv(dict,value):
     file_exists = os.path.isfile('dataset.csv')
@@ -65,6 +68,10 @@ def salva_csv(dict,value):
                        'left_hip2y':dict['left_hip2'][1], 'left_knee2y':dict['left_knee2'][1], 'left_ankle2y':dict['left_ankle2'][1],
                        'right_eye2y':dict['right_eye2'][1], 'left_eye2y':dict['left_eye2'][1], 'right_ear2y':dict['right_ear2'][1],
                        'left_ear2y':dict['left_ear2'][1], 'background2y':dict['background2'][1], 'label':value})
+
+'''
+    SALVATAGGIO FILE CSV DATASET DISTANZE
+'''
 
 def salva_csv_dist(list1,list2, value):
     file_exists = os.path.isfile('dataset_dist.csv')
