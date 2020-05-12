@@ -31,7 +31,7 @@ if __name__ == '__main__':
     params, model_params = config_reader()
 
     #immagini da classificare
-    input_image = cv2.imread('coppia.jpg')  # B,G,R order
+    input_image = cv2.imread('images.jpg')  # B,G,R order
 
     body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
     canvas, dict, lis1, lis2 = draw(input_image, all_peaks, subset, candidate)

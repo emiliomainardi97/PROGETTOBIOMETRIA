@@ -1,7 +1,10 @@
 import argparse
-import time
+import time, pandas,Concatena
 
 import CalcoloCombinazioni, CalcoloDistanza, DeterminaSogliaMedia
+from keras.engine.saving import model_from_json
+
+from sklearn import preprocessing
 
 import numpy as np
 
@@ -38,8 +41,20 @@ if __name__ == '__main__':
 
     input_image = cv2.imread('quattro1.jpg')  # B,G,R order
 
+    json_file = open('model4.json', 'r')
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+
+    loaded_model.load_weights("model4.h5")
+    print("Loaded model from disk")
+
+    loaded_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
     body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
     canvas, dict, lis1, lis2 = draw(input_image, all_peaks, subset, candidate)
+
+    soglia = 0.3
 
     #recupero combinazioni persone dall'immagine e relative coordinate
     listaCoppie, combinazioni = CalcoloCombinazioni.calcoloFinale(all_peaks)
@@ -53,13 +68,29 @@ if __name__ == '__main__':
         print(combinazioni[i])
         dist1,list1 = CalcoloDistanza.selectPlayer1(listaCoppie[i])
         dist2,list2 = CalcoloDistanza.selectPlayer2(listaCoppie[i])
-        print(dist1)
-        print(dist2)
-        temp = np.concatenate((dist1, dist2), axis=0)
-        print(DeterminaSogliaMedia.control(temp))
 
-    toc = time.time()
-    print('processing time is %.5f' % (toc - tic))
+        temp = np.concatenate((dist1, dist2), axis=0)
+        if DeterminaSogliaMedia.control(temp) >= soglia:
+            Concatena.salva_csv_dist(dist1, dist2, 'none')
+
+            dataframe = pandas.read_csv("dataset_dist.csv")
+
+            dataset = dataframe.values
+
+            riga = dataframe.shape[0]
+
+            X = dataset[:, 0:93]
+
+            predictions = loaded_model.predict_classes(X)
+
+            last = predictions[riga - 1]
+
+            if (last == 0):
+                print("fight")
+            else:
+                print("notfight")
+        else:
+            print("notfight senza classificazione")
 
     cv2.imwrite(output, canvas)
 
