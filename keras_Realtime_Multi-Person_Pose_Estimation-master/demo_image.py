@@ -31,7 +31,7 @@ if __name__ == '__main__':
     # load config
     params, model_params = config_reader()
 
-    path = 'C:\Frame_Estratti\Violence\\' + 'frame233.jpg'
+    path = 'C:\Frame_Estratti\Violence\\' + 'frame5095.jpg'
 
     input_image = cv2.imread(path)  # B,G,R order
 

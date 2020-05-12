@@ -106,7 +106,7 @@ if __name__ == '__main__':
 
         # generate image with body parts
         body_parts, all_peaks, subset, candidate = extract_parts(input_image, params, model, model_params)
-        canvas = draw(cropped, all_peaks, subset, candidate, resize_fac=resize_fac)
+        canvas,dict,list1,list2 = draw(cropped, all_peaks, subset, candidate, resize_fac=resize_fac)
 
         print('Processing frame: ', i)
         toc = time.time()

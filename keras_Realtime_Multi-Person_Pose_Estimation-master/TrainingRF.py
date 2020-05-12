@@ -3,7 +3,7 @@ import pandas
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from keras.utils import np_utils
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, KFold, cross_val_score
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import sklearn.metrics as metrics
 from sklearn.metrics import accuracy_score
