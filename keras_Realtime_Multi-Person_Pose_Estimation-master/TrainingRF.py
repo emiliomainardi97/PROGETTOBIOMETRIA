@@ -42,11 +42,11 @@ print(accuracies.mean())
 
 
 # save the model to disk
-filename = 'finalized_model.sav'
+filename = 'finalized_modelRF.sav'
 pickle.dump(classifier, open(filename, 'wb'))
 
 
-filename = 'finalized_model.sav'
+filename = 'finalized_modelRF.sav'
 # load the model from disk
 loaded_model = pickle.load(open(filename, 'rb'))
 predictions = loaded_model.predict(X_test)
