@@ -10,9 +10,13 @@ from sklearn.model_selection import cross_val_score
 
 from sklearn.metrics import accuracy_score
 
+from sklearn.metrics import plot_confusion_matrix
+
+import matplotlib.pyplot as plt
+
 
 dataset = pd.read_csv('dataset_completo_dist_2.csv')
-dataset.head()
+
 #divisione in train test e test set
 train_set, test_set = train_test_split(dataset, test_size=0.2, random_state=42)
 
@@ -25,7 +29,7 @@ labeldata=train_set['label']
 
 polynomialclassifierkernel = Pipeline([
 
-    ("svm_clf", SVC(kernel="poly", degree=3, coef0=1, C=100))
+    ("svm_clf", SVC(kernel="poly", degree=5, coef0=1, C=10))
 ])
 
 #allenamento classificatore svm
@@ -45,3 +49,17 @@ predizione=polynomialclassifierkernel.predict(testsenzalabel)
 #accuracy sui dati di test
 print("Accuracy sui dati di test")
 accuracy_score(predizione,labeldatatest)
+
+#Stampo matrice di confusione sui dati di test
+
+titles_options = [("Confusion matrix, without normalization", None),
+                  ("Normalized confusion matrix", 'true')]
+for title, normalize in titles_options:
+    disp = plot_confusion_matrix(polynomialclassifierkernel, testsenzalabel, labeldatatest,
+                                 cmap=plt.cm.Blues,
+                                 normalize=normalize)
+    disp.ax_.set_title(title)
+
+    print(title)
+    print(disp.confusion_matrix)
+    plt.show()
