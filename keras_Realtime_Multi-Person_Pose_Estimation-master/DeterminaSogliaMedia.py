@@ -27,11 +27,11 @@ def determinaSogliaMedia(path):
     LA CLASSIFICAZIONE
 '''
 
-def control(dist):
+def control(dist, soglia):
     count = 0
 
     for i in range(len(dist)):
-        if(dist[i] <= 371.21):
+        if dist[i] <= soglia:
             count = count + 1
 
     return count / len(dist)

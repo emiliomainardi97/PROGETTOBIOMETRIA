@@ -31,12 +31,12 @@ polynomialclassifierkernel = Pipeline([
 #allenamento classificatore svm
 polynomialclassifierkernel.fit(datisenzalabel,labeldata)
 
-#accuracy con la cross validation sui dtai di training
+#accuracy con la cross validation sui dati di training
 score=cross_val_score(polynomialclassifierkernel, datisenzalabel, labeldata, cv=5, scoring="accuracy")
 print("Accuracy con la cross-validation")
 score.mean()
 
-#seprao i dati di test dalle etichette
+#separo i dati di test dalle etichette
 test_set_copy=test_set.copy()
 testsenzalabel=test_set_copy.drop(['label'],axis=1)
 labeldatatest=test_set['label']

@@ -55,6 +55,7 @@ if __name__ == '__main__':
     canvas, dict, lis1, lis2 = draw(input_image, all_peaks, subset, candidate)
 
     soglia = 0.3
+    sogliaTh = DeterminaSogliaMedia.determinaSogliaMedia("dataset_distanza_26k.csv")
 
     #recupero combinazioni persone dall'immagine e relative coordinate
     listaCoppie, combinazioni = CalcoloCombinazioni.calcoloFinale(all_peaks)
@@ -70,7 +71,7 @@ if __name__ == '__main__':
         dist2,list2 = CalcoloDistanza.selectPlayer2(listaCoppie[i])
 
         temp = np.concatenate((dist1, dist2), axis=0)
-        if DeterminaSogliaMedia.control(temp) >= soglia:
+        if DeterminaSogliaMedia.control(temp,sogliaTh) >= soglia:
             Concatena.salva_csv_dist(dist1, dist2, 'none')
 
             dataframe = pandas.read_csv("dataset_dist.csv")

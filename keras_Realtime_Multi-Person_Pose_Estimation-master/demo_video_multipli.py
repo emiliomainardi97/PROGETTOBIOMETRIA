@@ -95,6 +95,7 @@ if __name__ == '__main__':
     notfight = 0
 
     soglia = 0.3
+    sogliaTh = DeterminaSogliaMedia.determinaSogliaMedia("dataset_distanza_26k.csv")
 
     i = 0  # default is 0
     while(cam.isOpened()) and ret_val is True and i < ending_frame:
@@ -125,7 +126,7 @@ if __name__ == '__main__':
                 dist2, list2 = CalcoloDistanza.selectPlayer2(listaCoppie[j])
 
                 temp = np.concatenate((dist1, dist2), axis=0)
-                if DeterminaSogliaMedia.control(temp) >= soglia:
+                if DeterminaSogliaMedia.control(temp,sogliaTh) >= soglia:
                     Concatena.salva_csv_dist(dist1, dist2, 'none')
 
                     dataframe = pandas.read_csv("dataset_dist.csv")
