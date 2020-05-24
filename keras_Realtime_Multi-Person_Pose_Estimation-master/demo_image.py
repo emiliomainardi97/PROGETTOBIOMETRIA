@@ -31,7 +31,7 @@ if __name__ == '__main__':
     # load config
     params, model_params = config_reader()
 
-    path_image = "coppia.jpg"
+    path_image = "emilio.jpg"
 
     input_image = cv2.imread(path_image)  # B,G,R order
 
