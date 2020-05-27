@@ -39,7 +39,7 @@ if __name__ == '__main__':
     # load config
     params, model_params = config_reader()
 
-    input_image = cv2.imread('quattro1.jpg')  # B,G,R order
+    input_image = cv2.imread('images.jpg')  # B,G,R order
 
     json_file = open('model4.json', 'r')
     loaded_model_json = json_file.read()
