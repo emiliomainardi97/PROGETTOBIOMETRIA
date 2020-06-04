@@ -6,14 +6,16 @@ ESTRAZIONE DEI FRAME DAI VIDEO
 
 import cv2,os
 
-path = 'C:\FightDataset\\NonViolence\\NV_'
-estensione= '.mp4'
+#path = 'C:\FightDataset\prova'
+path ="C:\FightDataset\\fi"
 
-os.chdir('C:\Frame_Estratti\\NonViolence')
+estensione= '_xvid.avi'
+
+os.chdir('C:\HockeyFrame')
 count = 0
 
-start = 0
-end = 0
+start = 0 #DA CAMBIARE START E END
+end = 1
 
 for i in range(start,end):
 
